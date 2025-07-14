@@ -2,7 +2,7 @@ name: Wind Breaker
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   schedule:
     - cron: '0 */12 * * *'
   workflow_dispatch:
@@ -43,7 +43,7 @@ jobs:
           git commit -m "$random_msg - $current_time" || echo "No changes to commit."
 
       - name: Pull latest changes from remote
-        run: git pull origin main --rebase
+        run: git pull origin master --rebase
 
       - name: GitHub Push
         uses: ad-m/github-push-action@v0.6.0
