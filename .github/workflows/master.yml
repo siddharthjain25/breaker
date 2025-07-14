@@ -2,7 +2,8 @@ name: Wind Breaker
 
 on:
   push:
-    branches: [main]
+    branches: [master] # Ensures the workflow triggers on pushes to master
+    
   schedule:
     - cron: '*/5 * * * *'
   workflow_dispatch:
@@ -41,12 +42,6 @@ jobs:
 
           git add TIMESTAMP.txt
           git commit -m "$random_msg - $current_time" || echo "No changes to commit."
-
-      - name: Ensure Correct Upstream
-        run: git branch --set-upstream-to=origin/main main
-
-      - name: Pull latest changes from remote
-        run: git pull origin main --rebase
 
       - name: GitHub Push
         uses: ad-m/github-push-action@v0.6.0
